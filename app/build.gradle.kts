@@ -60,4 +60,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation (libs.androidx.lifecycle.viewmodel.ktx)
     implementation( libs.androidx.lifecycle.viewmodel.compose)
+    androidTestImplementation(libs.androidx.navigation.testing)
+    androidTestImplementation(libs.androidx.espresso.intents)
 }
