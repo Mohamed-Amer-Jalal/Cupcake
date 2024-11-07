@@ -37,15 +37,18 @@ fun SelectOptionScreen(
     subtotal: String,
     options: List<String>,
     onSelectionChanged: (String) -> Unit = {},
+    onCancelButtonClicked: () -> Unit = {},
+    onNextButtonClicked: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     var selectedValue by rememberSaveable { mutableStateOf("") }
+    val paddingMedium = dimensionResource(R.dimen.padding_medium)
 
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        Column(modifier = Modifier.padding(dimensionResource(R.dimen.padding_medium))) {
+        Column(modifier = Modifier.padding(paddingMedium)) {
             options.forEach { item ->
                 Row(
                     modifier = Modifier.selectable(
@@ -68,29 +71,29 @@ fun SelectOptionScreen(
                 }
             }
             HorizontalDivider(
-                thickness = dimensionResource(R.dimen.thickness_divider),
-                modifier = Modifier.padding(bottom = dimensionResource(R.dimen.padding_medium))
+                modifier = Modifier.padding(bottom = paddingMedium),
+                thickness = paddingMedium
             )
             FormattedPriceLabel(
                 subtotal = subtotal,
                 modifier = Modifier
                     .align(Alignment.End)
                     .padding(
-                        top = dimensionResource(R.dimen.padding_medium),
-                        bottom = dimensionResource(R.dimen.padding_medium)
+                        top = paddingMedium,
+                        bottom = paddingMedium
                     )
             )
         }
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(dimensionResource(R.dimen.padding_medium)),
-            horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
+                .padding(paddingMedium),
+            horizontalArrangement = Arrangement.spacedBy(paddingMedium),
             verticalAlignment = Alignment.Bottom
         ) {
             OutlinedButton(
                 modifier = Modifier.weight(1f),
-                onClick = {}
+                onClick = onCancelButtonClicked
             ) {
                 Text(stringResource(R.string.cancel))
             }
@@ -98,7 +101,7 @@ fun SelectOptionScreen(
                 modifier = Modifier.weight(1f),
                 // the button is enabled when the user makes a selection
                 enabled = selectedValue.isNotEmpty(),
-                onClick = {}
+                onClick = onNextButtonClicked
             ) {
                 Text(stringResource(R.string.next))
             }
