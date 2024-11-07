@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 class CupcakeScreenNavigationTest {
+
     @get:Rule
     val composeTestRule = createAndroidComposeRule<ComponentActivity>()
 
