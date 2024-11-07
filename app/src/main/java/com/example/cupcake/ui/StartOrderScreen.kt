@@ -26,16 +26,13 @@ import com.example.cupcake.R
 import com.example.cupcake.data.DataSource
 import com.example.cupcake.ui.theme.CupcakeTheme
 
-///**
-// * Composable that allows the user to select the desired cupcake quantity and expects
-// * [onNextButtonClicked] lambda that expects the selected quantity and triggers the navigation to
-// * next screen
-// */
 @Composable
 fun StartOrderScreen(
     quantityOptions: List<Pair<Int, Int>>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
+    val paddingMedium = dimensionResource(R.dimen.padding_medium)
+    val paddingSmall = dimensionResource(R.dimen.padding_small)
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.SpaceBetween
@@ -43,27 +40,25 @@ fun StartOrderScreen(
         Column(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small))
+            verticalArrangement = Arrangement.spacedBy(paddingSmall)
         ) {
-            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))
+            Spacer(modifier = Modifier.height(paddingMedium))
             Image(
                 painter = painterResource(R.drawable.cupcake),
                 contentDescription = null,
                 modifier = Modifier.width(300.dp)
             )
-            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))
+            Spacer(modifier = Modifier.height(paddingMedium))
             Text(
                 text = stringResource(R.string.order_cupcakes),
                 style = MaterialTheme.typography.headlineSmall
             )
-            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
+            Spacer(modifier = Modifier.height(paddingSmall))
         }
         Column(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(
-                dimensionResource(id = R.dimen.padding_medium)
-            )
+            verticalArrangement = Arrangement.spacedBy(paddingMedium)
         ) {
             quantityOptions.forEach { item ->
                 SelectQuantityButton(
@@ -75,15 +70,11 @@ fun StartOrderScreen(
     }
 }
 
-/**
- * Customizable button composable that displays the [labelResourceId]
- * and triggers [onClick] lambda when this composable is clicked
- */
 @Composable
 fun SelectQuantityButton(
     @StringRes labelResourceId: Int,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Button(
         onClick = onClick,
